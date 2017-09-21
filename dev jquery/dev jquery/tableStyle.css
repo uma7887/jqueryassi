@@ -1,0 +1,9 @@
+<script class = "applystyle">
+table tbody td {
+  background-color: white;
+}
+table tbody td.odd {
+  background-color: #666;
+  color: white;
+}
+</script>
