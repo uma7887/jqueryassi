@@ -25,7 +25,10 @@ $(document).ready(function () {
 									
 									$.each(result,function(index,val){
 									 if(val.id == deletevalue){
-										  delete result[index];
+										 console.log("came inside");
+										 val.splice(index,1);
+										 
+										  
 									 }
 								    });
 								
