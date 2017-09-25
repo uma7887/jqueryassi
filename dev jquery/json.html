@@ -2,8 +2,6 @@
   <head>
     <title>Json handling using Jquery</title>
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" ></script>
-	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
-	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="crossorigin="anonymous"></script>
   </head>
   <body>
     <div id = "ManipulateDiv">
@@ -11,15 +9,21 @@
 	  <button type = "submit" id = "click_button">click </button> 
 	  <input type = "text" id = "filtertext"/>
 	  <button type = "submit" id = "button_input" >filter</button>
+	  <ul> 
+	    <input type = "radio" name="group1" id = "equalsClick">equals </input>
+		<input type = "radio" name="group1" id = "containsClick">contains</input>
+	  </ul>
+	  based on:
+	  <ul>
+	    <input type = "radio" name="group2" id = "nameClick">name </input>
+		<input type = "radio" name="group2" id = "Click">provider</input>
+	  </ul>
 	</div>
 	 <div id = "ContentDiv" style = "display:inline-block;">
-	  <div id = "TableDiv">
+	   <div id = "TableDiv">
 	     <table id = "append_data" border = "1"></table>
-	  </div>
+	   </div>
 	 </div>
 	 <script src = "sampleloadjson.js"></script>
-  </body>
-  
-  
-  
+  </body> 
 </html>
