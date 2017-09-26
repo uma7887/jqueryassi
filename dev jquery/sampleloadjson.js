@@ -2,6 +2,7 @@ var arrobj = [];
 var sort = [];
 var namearray = [];
 var results = [];
+var currentPage = 0;
 $(document).ready( function () {
 	var obj = [];
 	$(function () {
@@ -24,14 +25,36 @@ $('#click_button').click(function() {
 function updateTable() {
 		$('#append_data').empty();
 		$('#append_data').append('<thead><tr><th><a href ="#" onclick = "sortById();">Id</th><th><a href ="#" onclick = "sortByName();">name</th> <th><a href ="#" onclick = "sortByProvider();"> provider</a></th> <th> url</th><th> delete</th><th>edit</th></tr></thead>');
-		$.each(arrobj,function(index, value){
-			$('#append_data').append('<tbody class = "tbodyclass"><tr> <td> '+arrobj[index].id+'</td><td> '+arrobj[index].name+'</td> <td> '+arrobj[index].provider+'</td> <td>' +arrobj[index].url+'</td><td><button onclick = "deleterow('+index+');" >delete</button></td><td><button onclick = "editrow('+index+');" >edit</button></td></tr></tbody>');
+		$.each(arrobj.slice(currentPage*1,currentPage+2),function(currentPage, value){
+			console.log(currentPage);
+			console.log(value);
+			$('#append_data').append('<tbody class = "tbodyclass"><tr> <td> '+arrobj[currentPage].id+'</td><td> '+arrobj[currentPage].name+'</td> <td> '+arrobj[currentPage].provider+'</td> <td>' +arrobj[currentPage].url+'</td><td><button onclick = "deleterow('+currentPage+');" >delete</button></td><td><button onclick = "editrow('+currentPage+');" >edit</button></td></tr></tbody>');
 		});		
+}
+
+function previousPage() {
+	if(currentPage == 0){
+		$('#previousPage').attr(disabled,true);
+	}
+	else{
+		currentPage -= 2;
+	}
+}
+
+function nextPage() {
+	if(currentPage == 4){
+		$('#nextPage').attr(disabled,true);
+	}
+	else{
+		currentPage += 2;
+		updateTable();
+	}
 }
 
 function sortById() {
     arrobj.sort (sortByIdCallBack);		
     updateTable();
+	
 }
 
 function sortByIdCallBack(a, b) {
@@ -127,7 +150,7 @@ $("#button_input").click(function () {
 			  results.push(arrobj[i]);
 			}
 		  }
-		} updateTableByFilter(); 
+		} 
 	}
 });
 
@@ -154,10 +177,9 @@ $('#equalsClick').click (function() {
 	var inputdata = $('#filtertext').val();
 	$.each(arrobj,function (index, value ){
 		for(key in arrobj[index]){
-			if($('td('+value[key]+')')==inputdata){
-				console.log("matched");
-				td.css({"color" :"red"});
+			if(/*$('tr:eq('+*/value[key]/*+')')*/=== inputdata){
+				results.push(arrobj[index]);
 			}
 		}
-	});
+	});updateTableByFilter(); 
 });
